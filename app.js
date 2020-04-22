@@ -93,11 +93,24 @@ function isContainExpiry(key){
 	return result
 }
 
+function isUserSmoker(){
+	let result = false
+	switch(localStorage.getItem(smoker)){
+	case "true":
+		result = true
+		break
+	case "false":
+		result = false
+		break
+	}
+	return result
+}
+
 window.onload = () => {
 	Howler.autoUnlock = false
 	setExpire(alreadyChoose)
 	if (isContainExpiry(alreadyChoose)){
-		switch (localStorage.getItem(smoker)){
+		/*switch (localStorage.getItem(smoker)){
 		case "true":
 			sound = new Howl({
 				src: ['audio-kotor.mp3'],
@@ -120,6 +133,27 @@ window.onload = () => {
 				}
 			})
 			break;
+		}*/
+		if (isUserSmoker()){
+			sound = new Howl({
+				src: ['audio-kotor.mp3'],
+				preload: true,
+				loop: true,
+				volume: 1,
+				onend: function () {
+					console.log('Audio finished');
+				}
+			})
+		} else {
+			sound = new Howl({
+				src: ['audio-sehat.mp3'],
+				preload: true,
+				loop: true,
+				volume: 1,
+				onend: function () {
+					console.log('Audio finished');
+				}
+			})
 		}
 	} else {
 		//runLoadingbar()
@@ -131,14 +165,14 @@ function buttonSmoker(){
 	localStorage.setItem(smoker, "true")
 	//localStorage.setItem(alreadyChoose, "true")
 	setWithExpiry(alreadyChoose, "true", durationExpired)
-	window.location.replace('./index.html')
+	window.location.replace('./')
 }
 
 function buttonNonSmoker(){
 	localStorage.setItem(smoker, "false")
 	//localStorage.setItem(alreadyChoose, "true")
 	setWithExpiry(alreadyChoose, "true", durationExpired)
-	window.location.replace('./index.html')
+	window.location.replace('./')
 }
 
 AFRAME.registerComponent('paruparu', {
