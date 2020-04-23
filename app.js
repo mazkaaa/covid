@@ -13,26 +13,7 @@ let cameraLoaded = false
 
 
 
-let scene = this.el.sceneEl
-scene.addEventListener('realityready', () => {
-	if (!isContainExpiry(alreadyChoose)){
-		//document.querySelector(".progress-bar").setAttribute('style', 'width: 100%')
-		//$(".preload").removeClass("open");
-	}
-	cameraLoaded = true
-})
-scene.addEventListener('realityerror', (event) => {
-	if (XR8.XrDevice.isDeviceBrowserCompatible()) {
-		// Browser is compatible. Print the exception for more information.
-		console.log(event.detail.error)
-		return
-	}
 
-	// Browser is not compatible. Check the reasons why it may not be.
-	for (let reason of XR8.XrDevice.incompatibleReasons()) {
-		// Handle each XR8.XrDevice.IncompatibilityReasons
-	}
-})
 
 function changeInstructionText(){
 	document.getElementById("instruction").innerHTML = ""
@@ -116,6 +97,11 @@ function isUserSmoker(){
 }
 
 window.onload = () => {
+	var scene = document.querySelector('a-scene')
+	scene.addEventListener('loaded', (e)=>{
+		cameraLoaded = true
+	})
+
 	Howler.autoUnlock = false
 	setExpire(alreadyChoose)
 	if (isContainExpiry(alreadyChoose)){
