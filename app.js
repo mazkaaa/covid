@@ -97,15 +97,20 @@ function isUserSmoker(){
 }
 
 window.onload = () => {
-	var scene = document.querySelector('a-scene')
-	scene.addEventListener('loaded', (e)=>{
-		cameraLoaded = true
-	})
-
 	Howler.autoUnlock = false
 	setExpire(alreadyChoose)
+
+	var scene = document.querySelector('a-scene')
+	scene.addEventListener('loaded', (e)=>{
+		if (!isContainExpiry(alreadyChoose)){
+			document.getElementById("instruction").innerHTML = "Scan KTP kamu untuk memulai"
+			$(".scanIdText").addClass("open")
+		}
+	})
+
+
 	if (isContainExpiry(alreadyChoose)){
-		document.getElementById("instruction").innerHTML = "Letakan KTP di dada lalu lakukan scan untuk memulai"
+		document.getElementById("instruction").innerHTML = "Tempelkan KTP kamu di dada seperti ini, lalu scan pakai hape kamu"
 		$(".scanIdText").addClass("open")
 		if (isUserSmoker()){
 			sound = new Howl({
@@ -130,10 +135,6 @@ window.onload = () => {
 		}
 	} else {
 		//runLoadingbar()
-		if (cameraLoaded){
-			document.getElementById("instruction").innerHTML = "Scan KTP anda untuk memulai"
-			$(".scanIdText").addClass("open")
-		}
 	}
 }
 
