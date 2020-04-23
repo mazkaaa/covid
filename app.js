@@ -110,30 +110,6 @@ window.onload = () => {
 	Howler.autoUnlock = false
 	setExpire(alreadyChoose)
 	if (isContainExpiry(alreadyChoose)){
-		/*switch (localStorage.getItem(smoker)){
-		case "true":
-			sound = new Howl({
-				src: ['audio-kotor.mp3'],
-				preload: true,
-				loop: true,
-				volume: 1,
-				onend: function () {
-					console.log('Audio finished');
-				}
-			})
-			break;
-		case "false":
-			sound = new Howl({
-				src: ['audio-sehat.mp3'],
-				preload: true,
-				loop: true,
-				volume: 1,
-				onend: function () {
-					console.log('Audio finished');
-				}
-			})
-			break;
-		}*/
 		if (isUserSmoker()){
 			sound = new Howl({
 				src: ['audio-kotor.mp3'],
@@ -194,13 +170,10 @@ AFRAME.registerComponent('paruparu', {
 			paruObject.setAttribute('position', '0 -1 0')
 			paruObject.setAttribute('emissive', '#f5f5f5')
 			paruObject.setAttribute('emissiveIntensity', '1')
-			switch (localStorage.getItem(smoker)){
-			case "true":
+			if (isUserSmoker()){
 				paruObject.setAttribute('gltf-model', '#kotor-model')
-				break;
-			case "false":
+			} else {
 				paruObject.setAttribute('gltf-model', '#sehat-model')
-				break;
 			}
 			this.el.appendChild(paruObject)
             
