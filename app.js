@@ -8,15 +8,18 @@ let durationExpired = 60000
 
 var sound
 
+let cameraLoaded = false
 
 
 
-//let scene = this.el.sceneEl
-/*scene.addEventListener('realityready', () => {
+
+let scene = this.el.sceneEl
+scene.addEventListener('realityready', () => {
 	if (!isContainExpiry(alreadyChoose)){
 		//document.querySelector(".progress-bar").setAttribute('style', 'width: 100%')
 		//$(".preload").removeClass("open");
 	}
+	cameraLoaded = true
 })
 scene.addEventListener('realityerror', (event) => {
 	if (XR8.XrDevice.isDeviceBrowserCompatible()) {
@@ -29,7 +32,7 @@ scene.addEventListener('realityerror', (event) => {
 	for (let reason of XR8.XrDevice.incompatibleReasons()) {
 		// Handle each XR8.XrDevice.IncompatibilityReasons
 	}
-})*/
+})
 
 function changeInstructionText(){
 	document.getElementById("instruction").innerHTML = ""
@@ -141,8 +144,10 @@ window.onload = () => {
 		}
 	} else {
 		//runLoadingbar()
-		document.getElementById("instruction").innerHTML = "Scan KTP anda untuk memulai"
-		$(".scanIdText").addClass("open")
+		if (cameraLoaded){
+			document.getElementById("instruction").innerHTML = "Scan KTP anda untuk memulai"
+			$(".scanIdText").addClass("open")
+		}
 	}
 }
 
