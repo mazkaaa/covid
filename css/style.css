@@ -12,11 +12,13 @@
 	
 }
 
-.btn-outline-primary {
-	border-color: #fafafa;
-}
 .btn {
-	color: #fafafa;
+	visibility: hidden;
+    opacity: 0;
+}
+.btn.open{
+	visibility: visible;
+    opacity: 1;
 }
 
 .option1{

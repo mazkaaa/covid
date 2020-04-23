@@ -43,11 +43,13 @@ function closeInstruction(){
 	$(".scanIdText").removeClass("open")
 	$("#instruction").addClass("text-white")
 	$("#powered").addClass("text-white")
+	$(".btn").removeClass("open")
 }
 
 function openInstruction(){
 	$("#instruction").removeClass("text-white")
 	$(".scanIdText").addClass("bgWhite")
+	$(".btn").addClass("open")
 	$("#powered").removeClass("text-white")
 }
 
