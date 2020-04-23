@@ -8,7 +8,7 @@ let durationExpired = 60000
 
 var sound
 
-document.querySelector(".a-loader-title").innerHTML = "Mohon tunggu sebentar..."
+
 
 
 //let scene = this.el.sceneEl
