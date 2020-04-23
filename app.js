@@ -13,7 +13,7 @@ let cameraLoaded = false
 var titleTemp
 
 titleTemp = document.title
-document.title = "Mohon tunggu sebentar..."
+document.title = "Mohon tunggu sebentar"
 
 
 
@@ -36,6 +36,19 @@ function runLoadingbar(){
 	setTimeout(function() {
 		document.querySelector(".progress-bar").setAttribute('style', 'width: 70%')
 	}, 25000)
+}
+
+function closeInstruction(){
+	$(".scanIdText").removeClass("bgWhite")
+	$(".scanIdText").removeClass("open")
+	$("#instruction").addClass("text-white")
+	$("#powered").addClass("text-white")
+}
+
+function openInstruction(){
+	$("#instruction").removeClass("text-white")
+	$(".scanIdText").addClass("bgWhite")
+	$("#powered").removeClass("text-white")
 }
 
 function setWithExpiry(key, value, ttl) {
@@ -114,6 +127,7 @@ window.onload = () => {
 
 	if (isContainExpiry(alreadyChoose)){
 		document.getElementById("instruction").innerHTML = "Tempelkan KTP kamu di dada seperti ini, lalu scan menggunakan smartphone kamu"
+		openInstruction()
 		$(".scanIdText").addClass("open")
 		if (isUserSmoker()){
 			sound = new Howl({
