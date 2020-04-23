@@ -10,7 +10,9 @@ var sound
 
 let cameraLoaded = false
 
+let titleTemp 
 
+titleTemp = document.title
 
 
 
@@ -97,6 +99,7 @@ function isUserSmoker(){
 }
 
 window.onload = () => {
+	document.title = "Mohon tunggu sebentar..."
 	Howler.autoUnlock = false
 	setExpire(alreadyChoose)
 
@@ -105,12 +108,13 @@ window.onload = () => {
 		if (!isContainExpiry(alreadyChoose)){
 			document.getElementById("instruction").innerHTML = "Scan KTP kamu untuk memulai"
 			$(".scanIdText").addClass("open")
+			document.title = titleTemp
 		}
 	})
 
 
 	if (isContainExpiry(alreadyChoose)){
-		document.getElementById("instruction").innerHTML = "Tempelkan KTP kamu di dada seperti ini, lalu scan pakai hape kamu"
+		document.getElementById("instruction").innerHTML = "Tempelkan KTP kamu di dada seperti ini, lalu scan menggunakan smartphone kamu"
 		$(".scanIdText").addClass("open")
 		if (isUserSmoker()){
 			sound = new Howl({
