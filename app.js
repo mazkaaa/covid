@@ -10,10 +10,10 @@ var sound
 
 let cameraLoaded = false
 
-let titleTemp 
+var titleTemp
 
 titleTemp = document.title
-
+document.title = "Mohon tunggu sebentar..."
 
 
 
@@ -99,16 +99,15 @@ function isUserSmoker(){
 }
 
 window.onload = () => {
-	document.title = "Mohon tunggu sebentar..."
 	Howler.autoUnlock = false
 	setExpire(alreadyChoose)
 
 	var scene = document.querySelector('a-scene')
 	scene.addEventListener('loaded', (e)=>{
+		document.title = titleTemp
 		if (!isContainExpiry(alreadyChoose)){
 			document.getElementById("instruction").innerHTML = "Scan KTP kamu untuk memulai"
 			$(".scanIdText").addClass("open")
-			document.title = titleTemp
 		}
 	})
 
