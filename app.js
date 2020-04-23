@@ -31,6 +31,10 @@ scene.addEventListener('realityerror', (event) => {
 	}
 })*/
 
+function changeInstructionText(){
+	document.getElementById("instruction").innerHTML = ""
+}
+
 function runLoadingbar(){
 	$(".preload").addClass("open")
 	document.querySelector(".progress-bar").setAttribute('style', 'width: 0%')
@@ -112,6 +116,8 @@ window.onload = () => {
 	Howler.autoUnlock = false
 	setExpire(alreadyChoose)
 	if (isContainExpiry(alreadyChoose)){
+		document.getElementById("instruction").innerHTML = "Letakan KTP di dada lalu lakukan scan untuk memulai"
+		$(".scanIdText").addClass("open")
 		if (isUserSmoker()){
 			sound = new Howl({
 				src: ['audio-kotor.mp3'],
@@ -135,6 +141,8 @@ window.onload = () => {
 		}
 	} else {
 		//runLoadingbar()
+		document.getElementById("instruction").innerHTML = "Scan KTP anda untuk memulai"
+		$(".scanIdText").addClass("open")
 	}
 }
 
@@ -202,6 +210,8 @@ AFRAME.registerComponent('paruparu', {
 					founded = true
 				}
 
+				$(".scanIdText").removeClass("open")
+
 				// Updating position/rotation/scale using object3D is more performant than setAttribute
 				object3D.position.copy(detail.position)
 				object3D.quaternion.copy(detail.rotation)
@@ -224,6 +234,7 @@ AFRAME.registerComponent('paruparu', {
 			}
 
 			object3D.visible = false
+			$(".scanIdText").addClass("open")
 		}
 
 		// These events are routed and dispatched by xrextras-generate-image-targets
