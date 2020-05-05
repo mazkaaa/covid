@@ -187,7 +187,7 @@ AFRAME.registerComponent('paruparu', {
         
 
 		if (isContainExpiry(alreadyChoose)){
-			paruObject.setAttribute('scale', '8 8 8')
+			paruObject.setAttribute('scale', '8.5 8.5 8.5')
 			paruObject.setAttribute('position', '0 -1 0')
 			paruObject.setAttribute('emissive', '#f5f5f5')
 			paruObject.setAttribute('emissiveIntensity', '1')
@@ -206,14 +206,7 @@ AFRAME.registerComponent('paruparu', {
 
 			if (isContainExpiry(alreadyChoose)){
 				if (!played){
-					switch (localStorage.getItem(smoker)){
-					case "true":
-						paruObject.setAttribute('animation-mixer', 'clip: motion; loop: repeat')
-						break
-					case "false":
-						paruObject.setAttribute('animation-mixer', 'clip: motion; loop: repeat')
-						break
-					}
+					paruObject.setAttribute('animation-mixer', 'clip: motion; loop: repeat; timeScale: 1')
 					played = true
 				}
 				if (!founded){
@@ -236,11 +229,11 @@ AFRAME.registerComponent('paruparu', {
 		// hideImage handles hiding the virtual object when the image target is lost
 		const hideImage = () => {
 			if (played){
-				paruObject.removeAttribute('animation-mixer')
+				paruObject.setAttribute('animation-mixer', 'timeScale: 0')
 				played = false
 			}
 			if (founded){
-				sound.stop()
+				sound.pause()
 				founded = false
 			}
 
