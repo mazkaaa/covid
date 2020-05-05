@@ -16,6 +16,9 @@ titleTemp = document.title
 document.title = "Mohon tunggu sebentar"
 
 
+import {photomodeComponent} from './js/photomode'
+
+AFRAME.registerComponent('photo-mode', photomodeComponent)
 
 function changeInstructionText(){
 	document.getElementById("instruction").innerHTML = ""
