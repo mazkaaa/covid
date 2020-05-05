@@ -16,7 +16,7 @@ titleTemp = document.title
 document.title = "Mohon tunggu sebentar"
 
 
-import {photomodeComponent} from './js/photomode'
+//import {photomodeComponent} from './js/photomode.js'
 
 AFRAME.registerComponent('photo-mode', photomodeComponent)
 
