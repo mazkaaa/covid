@@ -122,6 +122,7 @@ window.onload = () => {
 			document.getElementById("instruction").innerHTML = "Scan KTP kamu untuk memulai"
 			$(".scanIdText").addClass("open")
 		}
+		registerScreenshotFrame()
 	})
 
 
