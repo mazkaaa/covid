@@ -4,7 +4,7 @@
   top: 0;
   bottom: 0;
   right: 0;
-  z-index: 10;
+  z-index: 15;
   pointer-events: none;
 }
 
@@ -15,7 +15,7 @@
   bottom: 0;
   right: 0;
   background-color: white;
-  z-index: 10;
+  z-index: 15;
   opacity: 0;
   transition: 0.5s;
 }
