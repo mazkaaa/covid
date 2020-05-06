@@ -17,10 +17,13 @@
         <script src="//cdn.8thwall.com/web/xrextras/xrextras.js"></script>
         <script src="//cdn.8thwall.com/web/aframe/aframe-extras-4.2.0.min.js"></script>
         <script async src="https://apps.8thwall.com/xrweb?appKey=gSjKcJppgoy59lPDyZ4qRp6ImSehJ9ApKbUJsLZVHc5Ilx26f4E3nndTKGzXRF81cQOT4U"></script>
+        <script src="js/photomode.js"></script>
         <script src="app.js"></script>
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/preloader.css">
+
+        <link rel="stylesheet" href="css/photomode.css">
 
 
     </head>
@@ -39,6 +42,14 @@
                 <button class="btn btn-outline-primary pt-3 pb-3 btn-block h4" onclick="closeInstruction()">Saya mengerti!</button>
             </div>
         </div>
+
+        <div id="photoModeContainer" style="display: none">
+            <img id="photoModeImage">
+            <div id="flash"></div>
+            <div id="shutterButton"></div>
+            <div id="closeButton"></div>
+        </div>
+
         <a-scene
             loading-screen="dotsColor: white; backgroundColor: black; enabled: true"
             xrweb="disableWorldTracking: true; cameraDirection: back"
