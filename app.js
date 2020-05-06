@@ -15,6 +15,10 @@ var titleTemp
 titleTemp = document.title
 document.title = "Mohon tunggu sebentar"
 
+var illusTemp
+
+illusTemp = document.getElementById("illus-wrapper").innerHTML
+
 function changeInstructionText(){
 	document.getElementById("instruction").innerHTML = ""
 }
@@ -43,6 +47,7 @@ function closeInstruction(){
 	$("#powered").addClass("text-white")
 	$(".btn").removeClass("open")
 	$(".img-illus").removeClass("open")
+	document.getElementById("illus-wrapper").innerHTML = ''
 }
 
 function openInstruction(){
@@ -121,6 +126,7 @@ window.onload = () => {
 	scene.addEventListener('loaded', (e)=>{
 		document.title = titleTemp
 		if (!isContainExpiry(alreadyChoose)){
+			document.getElementById("illus-wrapper").innerHTML = ''
 			document.getElementById("instruction").innerHTML = "Scan sisi depan KTP kamu untuk memulai"
 			$(".scanIdText").addClass("open")
 		}
@@ -128,6 +134,7 @@ window.onload = () => {
 
 
 	if (isContainExpiry(alreadyChoose)){
+		document.getElementById("illus-wrapper").innerHTML = illusTemp
 		document.getElementById("instruction").innerHTML = "Tempelkan KTP kamu di dada seperti ini, lalu scan menggunakan smartphone kamu"
 		openInstruction()
 		$(".scanIdText").addClass("open")
