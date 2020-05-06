@@ -31,19 +31,18 @@
 	padding-top: 30px;
 }
 
-#illus-wrapper{
-	
-}
-
 .img-illus{
 	visibility: hidden;
 	opacity: 0;
-	overflow: hidden;
+	overflow-y: auto;
 }
 .img-illus.open{
 	visibility: visible;
 	opacity: 1;
-	overflow: visible;
+}
+
+#illus-wrapper{
+
 }
 
 
