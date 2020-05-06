@@ -54,7 +54,7 @@ function openInstruction(){
 	$(".btn").addClass("open")
 	$(".img-illus").addClass("open")
 	$("#powered").removeClass("text-white")
-	document.getElementById("illus-wrapper").innerHTML = illusTemp
+	document.getElementById("illus-wrapper").appendChild(illusTemp)
 }
 
 function setWithExpiry(key, value, ttl) {
@@ -125,7 +125,7 @@ window.onload = () => {
 	scene.addEventListener('loaded', (e)=>{
 		document.title = titleTemp
 		if (!isContainExpiry(alreadyChoose)){
-			illusTemp = document.getElementById("illus-wrapper").innerHTML
+			illusTemp = document.getElementById("illus-wrapper").childNodes
 			document.getElementById("illus-wrapper").innerHTML = ''
 			document.getElementById("instruction").innerHTML = "Scan sisi depan KTP kamu untuk memulai"
 			$(".scanIdText").addClass("open")
