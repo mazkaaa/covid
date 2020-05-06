@@ -15,7 +15,10 @@ var titleTemp
 titleTemp = document.title
 document.title = "Mohon tunggu sebentar"
 
-var illusTemp
+var illusTemp = '<div class="img-illus text-center mb-3">' + 
+					'<img src="img/body-parts.png" class="img-fluid rounded mb-3">' +
+					'<img src="img/190701213143-penaj.jpg" class="img-fluid rounded">' +
+				'</div>'
 
 function changeInstructionText(){
 	document.getElementById("instruction").innerHTML = ""
@@ -54,7 +57,7 @@ function openInstruction(){
 	$(".btn").addClass("open")
 	$(".img-illus").addClass("open")
 	$("#powered").removeClass("text-white")
-	document.getElementById("illus-wrapper").appendChild(illusTemp)
+	document.getElementById("illus-wrapper").innerHTML = illusTemp
 }
 
 function setWithExpiry(key, value, ttl) {
@@ -125,7 +128,6 @@ window.onload = () => {
 	scene.addEventListener('loaded', (e)=>{
 		document.title = titleTemp
 		if (!isContainExpiry(alreadyChoose)){
-			illusTemp = document.getElementById("illus-wrapper").childNodes
 			document.getElementById("illus-wrapper").innerHTML = ''
 			document.getElementById("instruction").innerHTML = "Scan sisi depan KTP kamu untuk memulai"
 			$(".scanIdText").addClass("open")
