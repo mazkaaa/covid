@@ -54,6 +54,7 @@ function openInstruction(){
 	$(".btn").addClass("open")
 	$(".img-illus").addClass("open")
 	$("#powered").removeClass("text-white")
+	document.getElementById("illus-wrapper").innerHTML = illusTemp
 }
 
 function setWithExpiry(key, value, ttl) {
@@ -133,7 +134,6 @@ window.onload = () => {
 
 
 	if (isContainExpiry(alreadyChoose)){
-		document.getElementById("illus-wrapper").innerHTML = illusTemp
 		document.getElementById("instruction").innerHTML = "Tempelkan KTP kamu di dada seperti ini, lalu scan menggunakan smartphone kamu"
 		openInstruction()
 		$(".scanIdText").addClass("open")
