@@ -42,12 +42,14 @@ function closeInstruction(){
 	$("#instruction").addClass("text-white")
 	$("#powered").addClass("text-white")
 	$(".btn").removeClass("open")
+	$(".img-illus").removeClass("open")
 }
 
 function openInstruction(){
 	$("#instruction").removeClass("text-white")
 	$(".scanIdText").addClass("bgWhite")
 	$(".btn").addClass("open")
+	$(".img-illus").addClass("open")
 	$("#powered").removeClass("text-white")
 }
 
@@ -119,10 +121,9 @@ window.onload = () => {
 	scene.addEventListener('loaded', (e)=>{
 		document.title = titleTemp
 		if (!isContainExpiry(alreadyChoose)){
-			document.getElementById("instruction").innerHTML = "Scan KTP kamu untuk memulai"
+			document.getElementById("instruction").innerHTML = "Scan sisi depan KTP kamu untuk memulai"
 			$(".scanIdText").addClass("open")
 		}
-		registerScreenshotFrame()
 	})
 
 

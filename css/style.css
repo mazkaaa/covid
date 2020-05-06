@@ -32,6 +32,17 @@
 }
 
 
+#img-illus{
+	visibility: hidden;
+	opacity: 0;
+	overflow: hidden;
+}
+#img-illus.open{
+	visibility: visible;
+	opacity: 1;
+	overflow: visible;
+}
+
 
 
 
