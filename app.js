@@ -238,7 +238,7 @@ AFRAME.registerComponent('paruparu', {
 			}
 
 			object3D.visible = false
-			document.getElementById("instruction").innerHTML = "Scan KTP kamu untuk memulai"
+			document.getElementById("instruction").innerHTML = "Scan sisi depan KTP kamu untuk memulai"
 			$(".scanIdText").addClass("open")
 		}
 
