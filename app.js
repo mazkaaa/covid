@@ -17,8 +17,6 @@ document.title = "Mohon tunggu sebentar"
 
 var illusTemp
 
-illusTemp = document.getElementById("illus-wrapper").innerHTML
-
 function changeInstructionText(){
 	document.getElementById("instruction").innerHTML = ""
 }
@@ -126,6 +124,7 @@ window.onload = () => {
 	scene.addEventListener('loaded', (e)=>{
 		document.title = titleTemp
 		if (!isContainExpiry(alreadyChoose)){
+			illusTemp = document.getElementById("illus-wrapper").innerHTML
 			document.getElementById("illus-wrapper").innerHTML = ''
 			document.getElementById("instruction").innerHTML = "Scan sisi depan KTP kamu untuk memulai"
 			$(".scanIdText").addClass("open")
