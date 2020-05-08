@@ -42,21 +42,21 @@ function runLoadingbar(){
 }
 
 function closeInstruction(){
-	$(".scanIdText").removeClass("bgWhite")
+	/*$(".scanIdText").removeClass("bgWhite")
 	$(".scanIdText").removeClass("open")
 	$("#instruction").addClass("text-white")
 	$("#powered").addClass("text-white")
 	$(".btn").removeClass("open")
 	$(".img-illus").removeClass("open")
-	document.getElementById("illus-wrapper").innerHTML = ''
+	document.getElementById("illus-wrapper").innerHTML = ''*/
 }
 
 function openInstruction(){
-	$("#instruction").removeClass("text-white")
+	/*$("#instruction").removeClass("text-white")
 	$(".scanIdText").addClass("bgWhite")
 	$(".btn").addClass("open")
 	$(".img-illus").addClass("open")
-	$("#powered").removeClass("text-white")
+	$("#powered").removeClass("text-white")*/
 }
 
 function setWithExpiry(key, value, ttl) {
@@ -127,18 +127,18 @@ window.onload = () => {
 	scene.addEventListener('loaded', (e)=>{
 		document.title = titleTemp
 		if (!isContainExpiry(alreadyChoose)){
-			document.getElementById("illus-wrapper").innerHTML = ''
+			/*document.getElementById("illus-wrapper").innerHTML = ''
 			document.getElementById("instruction").innerHTML = "Scan sisi depan KTP kamu untuk memulai"
-			$(".scanIdText").addClass("open")
+			$(".scanIdText").addClass("open")*/
 		}
 	})
 
 
 	if (isContainExpiry(alreadyChoose)){
-		document.getElementById("illus-wrapper").innerHTML = illusTemp
+		/*document.getElementById("illus-wrapper").innerHTML = illusTemp
 		document.getElementById("instruction").innerHTML = "Tempelkan KTP kamu di dada seperti ini, lalu scan menggunakan smartphone kamu"
 		openInstruction()
-		$(".scanIdText").addClass("open")
+		$(".scanIdText").addClass("open")*/
 		if (isUserSmoker()){
 			sound = new Howl({
 				src: ['audio-kotor.mp3'],
@@ -222,7 +222,7 @@ AFRAME.registerComponent('paruparu', {
 					founded = true
 				}
 
-				$(".scanIdText").removeClass("open")
+				//$(".scanIdText").removeClass("open")
 
 				// Updating position/rotation/scale using object3D is more performant than setAttribute
 				object3D.position.copy(detail.position)
@@ -246,8 +246,8 @@ AFRAME.registerComponent('paruparu', {
 			}
 
 			object3D.visible = false
-			document.getElementById("instruction").innerHTML = "Scan sisi depan KTP kamu untuk memulai"
-			$(".scanIdText").addClass("open")
+			//document.getElementById("instruction").innerHTML = "Scan sisi depan KTP kamu untuk memulai"
+			//$(".scanIdText").addClass("open")
 		}
 
 		// These events are routed and dispatched by xrextras-generate-image-targets
