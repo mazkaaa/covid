@@ -19,15 +19,8 @@ let illusTemp = '<div class="img-illus text-center mb-3">' +
 					'<img src="img/body-parts.png" class="img-fluid rounded mb-3">' +
 					'<img src="img/190701213143-penaj.jpg" class="img-fluid rounded">' +
 				'</div>'
-
-				
 let smokerAsset = '<a-asset-item id="kotor-model" src="kotor2.glb" preload="true"></a-asset-item>'
-
-
 let nonsmokerAsset = '<a-asset-item id="sehat-model" src="sehat2.glb" preload="true"></a-asset-item>'
-
-const sceneId = document.getElementById("sceneId")
-let assetEl = null
 
 
 /**
@@ -35,9 +28,6 @@ let assetEl = null
  * @param {number} type non-smoker is 0, and smoker is 1
  */
 function setPreloadAsset(type){
-	assetEl = document.createElement("a-assets")
-	assetEl.setAttribute("id", "asset-preloader")
-	sceneId.appendChild(assetEl)
 	const assetId = document.getElementById("asset-preloader")
 	switch (type) {
 	case 0: //sehat
