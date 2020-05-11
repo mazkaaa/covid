@@ -26,24 +26,18 @@ let smokerAsset = '<a-asset-item id="kotor-model" src="kotor2.glb" preload="true
 
 let nonsmokerAsset = '<a-asset-item id="sehat-model" src="sehat2.glb" preload="true"></a-asset-item>'
 
-const sceneId = document.querySelector("a-scene")
+const sceneId = document.getElementById("sceneId")
 let assetEl = null
+
 
 /**
  * 
  * @param {number} type non-smoker is 0, and smoker is 1
  */
 function setPreloadAsset(type){
-	/*const promise = new Promise(() => {
-		assetEl = document.createElement("a-assets")
-		assetEl.setAttribute("id", "asset-preloader")
-	})
-	promise.then((res) => {
-		sceneId.appendChild(assetEl)
-		console.log(res)
-	}, (err) => {
-		console.log(err)
-	})
+	assetEl = document.createElement("a-assets")
+	assetEl.setAttribute("id", "asset-preloader")
+	sceneId.appendChild(assetEl)
 	const assetId = document.getElementById("asset-preloader")
 	switch (type) {
 	case 0: //sehat
@@ -53,24 +47,7 @@ function setPreloadAsset(type){
 	case 1: //kotor
 		assetId.innerHTML = smokerAsset
 		break;
-	}*/
-	const assetId = document.getElementById("asset-preloader")
-	const assetCreated = document.createElement("a-asset-item")
-	switch (type) {
-	case 0:
-		assetCreated.setAttribute("id", "sehat-model")
-		assetCreated.setAttribute("src", "sehat2.glb")
-		assetCreated.setAttribute("preload", "true")
-		break;
-	
-	case 1:
-		assetCreated.setAttribute("id", "kotor-model")
-		assetCreated.setAttribute("src", "kotor2.glb")
-		assetCreated.setAttribute("preload", "true")
-		break;
 	}
-	assetId.appendChild(assetCreated)
-	
 }
 
 
