@@ -54,17 +54,19 @@ function setPreloadAsset(type){
 		assetId.innerHTML = smokerAsset
 		break;
 	}*/
-	const assetId = document.querySelector("a-assets")
+	const assetId = document.getElementById("asset-preloader")
 	const assetCreated = document.createElement("a-asset-item")
 	switch (type) {
 	case 0:
 		assetCreated.setAttribute("id", "sehat-model")
 		assetCreated.setAttribute("src", "sehat2.glb")
+		assetCreated.setAttribute("preload", "true")
 		break;
 	
 	case 1:
 		assetCreated.setAttribute("id", "kotor-model")
 		assetCreated.setAttribute("src", "kotor2.glb")
+		assetCreated.setAttribute("preload", "true")
 		break;
 	}
 	assetId.appendChild(assetCreated)
@@ -256,27 +258,6 @@ AFRAME.registerComponent('paruparu', {
         
 
 		if (isContainExpiry(alreadyChoose)){
-			let promise = null
-			if (isUserSmoker()){
-				promise = new Promise((res, rej) => {
-					paruObject.setAttribute('gltf-model', '#kotor-model')
-				})
-			} else {
-				promise = new Promise((res, rej) => {
-					paruObject.setAttribute('gltf-model', '#sehat-model')
-				})
-			}
-			promise.then((res) =>{
-				paruObject.setAttribute('scale', '8.5 8.5 8.5')
-				paruObject.setAttribute('position', '0 -1 0')
-				paruObject.setAttribute('emissive', '#f5f5f5')
-				paruObject.setAttribute('emissiveIntensity', '1')
-				this.el.appendChild(paruObject)
-				console.log(res)
-			}, (err) => {
-				console.log(err)
-			})
-			/*
 			paruObject.setAttribute('scale', '8.5 8.5 8.5')
 			paruObject.setAttribute('position', '0 -1 0')
 			paruObject.setAttribute('emissive', '#f5f5f5')
@@ -287,7 +268,6 @@ AFRAME.registerComponent('paruparu', {
 				paruObject.setAttribute('gltf-model', '#sehat-model')
 			}
 			this.el.appendChild(paruObject)
-			*/
             
 		}
 
