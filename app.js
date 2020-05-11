@@ -1,6 +1,6 @@
 var alreadyChoose = "choosen"
 var smoker = "smoker"
-
+const container = document.getElementById('photoModeContainer')
 let founded = false;
 let played = false;
 
@@ -49,6 +49,7 @@ function closeInstruction(){
 	$(".btn").removeClass("open")
 	$(".img-illus").removeClass("open")
 	document.getElementById("illus-wrapper").innerHTML = ''
+	container.style.display = 'block'
 }
 
 function openInstruction(){
@@ -135,6 +136,7 @@ window.onload = () => {
 
 
 	if (isContainExpiry(alreadyChoose)){
+		container.style.display = 'none'
 		document.getElementById("illus-wrapper").innerHTML = illusTemp
 		document.getElementById("instruction").innerHTML = "Tempelkan KTP kamu di dada seperti ini, lalu scan menggunakan smartphone kamu"
 		openInstruction()
