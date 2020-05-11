@@ -20,7 +20,7 @@ let illusTemp = '<div class="img-illus text-center mb-3">' +
 					'<img src="img/190701213143-penaj.jpg" class="img-fluid rounded">' +
 				'</div>'
 
-				
+
 let smokerAsset = '<a-asset-item id="kotor-model" src="kotor2.glb" preload="true"></a-asset-item>'
 
 
@@ -154,6 +154,11 @@ function isUserSmoker(){
 window.onload = () => {
 	Howler.autoUnlock = false
 	setExpire(alreadyChoose)
+	if (isUserSmoker()){
+		setPreloadAsset(1)
+	} else {
+		setPreloadAsset(0)
+	}
 
 	var scene = document.querySelector('a-scene')
 	scene.addEventListener('loaded', (e)=>{
@@ -203,7 +208,6 @@ function buttonSmoker(){
 	localStorage.setItem(smoker, "true")
 	//localStorage.setItem(alreadyChoose, "true")
 	setWithExpiry(alreadyChoose, "true", durationExpired)
-	setPreloadAsset(1)
 	window.location.replace('./')
 }
 
@@ -211,7 +215,6 @@ function buttonNonSmoker(){
 	localStorage.setItem(smoker, "false")
 	//localStorage.setItem(alreadyChoose, "true")
 	setWithExpiry(alreadyChoose, "true", durationExpired)
-	setPreloadAsset(0)
 	window.location.replace('./')
 }
 
