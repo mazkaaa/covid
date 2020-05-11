@@ -19,27 +19,6 @@ let illusTemp = '<div class="img-illus text-center mb-3">' +
 					'<img src="img/body-parts.png" class="img-fluid rounded mb-3">' +
 					'<img src="img/190701213143-penaj.jpg" class="img-fluid rounded">' +
 				'</div>'
-let smokerAsset = '<a-asset-item id="kotor-model" src="kotor2.glb" preload="true"></a-asset-item>'
-let nonsmokerAsset = '<a-asset-item id="sehat-model" src="sehat2.glb" preload="true"></a-asset-item>'
-
-
-/**
- * 
- * @param {number} type non-smoker is 0, and smoker is 1
- */
-function setPreloadAsset(type){
-	const assetId = document.getElementById("asset-preloader")
-	switch (type) {
-	case 0: //sehat
-		assetId.innerHTML = nonsmokerAsset
-		break;
-	
-	case 1: //kotor
-		assetId.innerHTML = smokerAsset
-		break;
-	}
-}
-
 
 function changeInstructionText(){
 	document.getElementById("instruction").innerHTML = ""
@@ -193,7 +172,6 @@ function buttonSmoker(){
 	localStorage.setItem(smoker, "true")
 	//localStorage.setItem(alreadyChoose, "true")
 	setWithExpiry(alreadyChoose, "true", durationExpired)
-	setPreloadAsset(1)
 	window.location.replace('./')
 }
 
@@ -201,7 +179,6 @@ function buttonNonSmoker(){
 	localStorage.setItem(smoker, "false")
 	//localStorage.setItem(alreadyChoose, "true")
 	setWithExpiry(alreadyChoose, "true", durationExpired)
-	setPreloadAsset(0)
 	window.location.replace('./')
 }
 
