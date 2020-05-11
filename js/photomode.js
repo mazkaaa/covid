@@ -6,7 +6,7 @@ AFRAME.registerComponent('photo-mode', {
 		const closeButton = document.getElementById('closeButton')
   
 		// Container starts hidden so it isn't visible when the page is still loading
-		container.style.display = 'block'
+		//container.style.display = 'block'
   
 		closeButton.addEventListener('click', () => {
 			container.classList.remove('photo')
