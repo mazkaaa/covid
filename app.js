@@ -154,10 +154,12 @@ function isUserSmoker(){
 window.onload = () => {
 	Howler.autoUnlock = false
 	setExpire(alreadyChoose)
-	if (isUserSmoker()){
-		setPreloadAsset(1)
-	} else {
-		setPreloadAsset(0)
+	if (isContainExpiry(alreadyChoose)){
+		if (isUserSmoker()){
+			setPreloadAsset(1)
+		} else {
+			setPreloadAsset(0)
+		}
 	}
 
 	var scene = document.querySelector('a-scene')
