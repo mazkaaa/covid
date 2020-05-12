@@ -20,6 +20,10 @@ let illusTemp = '<div class="img-illus text-center mb-3">' +
 					'<img src="img/190701213143-penaj.jpg" class="img-fluid rounded">' +
 				'</div>'
 
+
+const photoContainer = document.getElementById("photoModeContainer")
+
+
 function changeInstructionText(){
 	document.getElementById("instruction").innerHTML = ""
 }
@@ -49,6 +53,7 @@ function closeInstruction(){
 	$(".btn").removeClass("open")
 	$(".img-illus").removeClass("open")
 	document.getElementById("illus-wrapper").innerHTML = ''
+	photoContainer.style.display = 'block'
 }
 
 function openInstruction(){
@@ -57,6 +62,7 @@ function openInstruction(){
 	$(".btn").addClass("open")
 	$(".img-illus").addClass("open")
 	$("#powered").removeClass("text-white")
+	photoContainer.style.display = 'none'
 }
 
 function setWithExpiry(key, value, ttl) {
