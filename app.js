@@ -21,14 +21,6 @@ let photoContainer = null
 
 let assetsSelector = null
 
-if (isContainExpiry(alreadyChoose)){
-	if (isUserSmoker()){
-		setAssetPreload(0)
-	} else {
-		setAssetPreload(1)
-	}
-}
-
 /**
  * 
  * @param {number} type Type 0 for smoker, and type 1 for non smoker
@@ -52,6 +44,15 @@ function createAssetsElement(){
 		sceneElement.appendChild(assetsSelector)
 		resolve()
 	})
+}
+function checkThePreload(){
+	if (isContainExpiry(alreadyChoose)){
+		if (isUserSmoker()){
+			setAssetPreload(0)
+		} else {
+			setAssetPreload(1)
+		}
+	}
 }
 
 async function closeInstruction(){
@@ -121,19 +122,6 @@ function isUserSmoker(){
 		break
 	}
 	return result
-}
-
-function checkPreload(){
-	return new Promise(resolve => {
-		if (isContainExpiry(alreadyChoose)){
-			if (isUserSmoker()){
-				setAssetPreload(0)
-			} else {
-				setAssetPreload(1)
-			}
-		}
-		resolve()
-	})
 }
 
 window.onload = () => {
