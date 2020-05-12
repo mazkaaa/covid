@@ -8,8 +8,6 @@ let durationExpired = 60000
 
 var sound
 
-let cameraLoaded = false
-
 var titleTemp
 
 titleTemp = document.title
@@ -22,31 +20,6 @@ let illusTemp = '<div class="img-illus text-center mb-3">' +
 
 
 let photoContainer = null
-if (cameraLoaded){
-	photoContainer = document.getElementById("photoModeContainer")
-}
-
-
-function changeInstructionText(){
-	document.getElementById("instruction").innerHTML = ""
-}
-
-function runLoadingbar(){
-	$(".preload").addClass("open")
-	document.querySelector(".progress-bar").setAttribute('style', 'width: 0%')
-	setTimeout(function() {
-		document.querySelector(".progress-bar").setAttribute('style', 'width: 10%')
-	}, 5000)
-	setTimeout(function() {
-		document.querySelector(".progress-bar").setAttribute('style', 'width: 30%')
-	}, 10000)
-	setTimeout(function() {
-		document.querySelector(".progress-bar").setAttribute('style', 'width: 50%')
-	}, 15000)
-	setTimeout(function() {
-		document.querySelector(".progress-bar").setAttribute('style', 'width: 70%')
-	}, 25000)
-}
 
 async function closeInstruction(){
 	await setCloseInstruction()
@@ -79,30 +52,6 @@ function setOpenInstruction(){
 		$("#powered").removeClass("text-white")
 		resolve()
 	})
-}
-
-function setWithExpiry(key, value, ttl) {
-	const now = new Date()
-
-	const item = {
-		value: value,
-		expiry: now.getTime() + ttl
-	}
-	localStorage.setItem(key, JSON.stringify(item))
-}
-
-function getWithExpiry(key){
-	const itemStr = localStorage.getItem(key)
-	if (!itemStr){
-		return null
-	}
-	const item = JSON.parse(itemStr)
-	const now = new Date()
-	if (now.getTime() > item.expiry){
-		localStorage.removeItem(key)
-		return null
-	}
-	return item.value
 }
 
 function setExpire(key){
@@ -144,11 +93,10 @@ function isUserSmoker(){
 window.onload = () => {
 	Howler.autoUnlock = false
 	setExpire(alreadyChoose)
-
+	photoContainer = document.getElementById("photoModeContainer")
 	var scene = document.querySelector('a-scene')
 	scene.addEventListener('loaded', (e)=>{
 		document.title = titleTemp
-		cameraLoaded = true
 		if (!isContainExpiry(alreadyChoose)){
 			document.getElementById("illus-wrapper").innerHTML = ''
 			document.getElementById("instruction").innerHTML = "Scan sisi depan KTP kamu untuk memulai"
@@ -183,24 +131,7 @@ window.onload = () => {
 				}
 			})
 		}
-	} else {
-		//runLoadingbar()
 	}
-}
-
-
-function buttonSmoker(){
-	localStorage.setItem(smoker, "true")
-	//localStorage.setItem(alreadyChoose, "true")
-	setWithExpiry(alreadyChoose, "true", durationExpired)
-	window.location.replace('./')
-}
-
-function buttonNonSmoker(){
-	localStorage.setItem(smoker, "false")
-	//localStorage.setItem(alreadyChoose, "true")
-	setWithExpiry(alreadyChoose, "true", durationExpired)
-	window.location.replace('./')
 }
 
 AFRAME.registerComponent('paruparu', {
@@ -290,3 +221,46 @@ AFRAME.registerPrimitive('paruparu-ktp', {
 		name: 'paruparu.name'
 	}
 })
+
+AFRAME.registerComponent('photo-mode', {
+	init: function() {
+		const container = document.getElementById('photoModeContainer')
+		const image = document.getElementById('photoModeImage')
+		const shutterButton = document.getElementById('shutterButton')
+		const closeButton = document.getElementById('closeButton')
+  
+		// Container starts hidden so it isn't visible when the page is still loading
+		container.style.display = 'block'
+  
+		closeButton.addEventListener('click', () => {
+			container.classList.remove('photo')
+		})
+  
+		shutterButton.addEventListener('click', () => {
+			// Emit a screenshotrequest to the xrweb component
+			this.el.sceneEl.emit('screenshotrequest')
+  
+			// Show the flash while the image is being taken
+			// eslint-disable-next-line indent
+        container.classList.add('flash')
+		})
+  
+		this.el.sceneEl.addEventListener('screenshotready', e => {
+			// Hide the flash
+			container.classList.remove('flash')
+  
+			// If an error occurs while trying to take the screenshot, e.detail will be empty.
+			// We could either retry or return control to the user
+			if (!e.detail) {
+				return
+			}
+  
+			// e.detail is the base64 representation of the JPEG screenshot
+			image.src = 'data:image/jpeg;base64,' + e.detail
+  
+			// Show the photo
+			container.classList.add('photo')
+		})
+	}
+})
+  
