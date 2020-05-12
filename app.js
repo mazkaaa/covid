@@ -6,6 +6,7 @@ let played = false;
 
 let durationExpired = 60000
 
+let objectLoaded = false
 var sound
 
 var titleTemp
@@ -31,13 +32,14 @@ async function setAssetPreload(type){
 	await createAssetsElement()
 	switch (type) {
 	case 0:
-		assetsSelector.innerHTML = '<a-asset-item id="kotor-model" src="kotor2.glb" preload="true"></a-asset-item>'
+		assetsSelector.innerHTML = '<a-asset-item id="kotor-model" src="kotor2.glb"></a-asset-item>'
 		break;
 	
 	case 1:
-		assetsSelector.innerHTML = '<a-asset-item id="sehat-model" src="sehat2.glb" preload="true"></a-asset-item>'
+		assetsSelector.innerHTML = '<a-asset-item id="sehat-model" src="sehat2.glb"></a-asset-item>'
 		break;
 	}
+	objectLoaded = true
 }
 function createAssetsElement(){
 	return new Promise(resolve => {
@@ -120,6 +122,13 @@ function isUserSmoker(){
 window.onload = () => {
 	Howler.autoUnlock = false
 	setExpire(alreadyChoose)
+	if (isContainExpiry(alreadyChoose)){
+		if (isUserSmoker()){
+			setAssetPreload(0)
+		} else {
+			setAssetPreload(1)
+		}
+	}
 	var scene = document.querySelector('a-scene')
 	scene.addEventListener('loaded', () =>{
 		document.title = titleTemp
@@ -144,7 +153,7 @@ window.onload = () => {
 						console.log('Audio finished');
 					}
 				})
-				setAssetPreload(0)
+				//setAssetPreload(0)
 			} else {
 				sound = new Howl({
 					src: ['audio-sehat.mp3'],
@@ -155,7 +164,7 @@ window.onload = () => {
 						console.log('Audio finished');
 					}
 				})
-				setAssetPreload(1)
+				//setAssetPreload(1)
 			}
 		}
 	})
@@ -180,10 +189,12 @@ AFRAME.registerComponent('paruparu', {
 			paruObject.setAttribute('position', '0 -1 0')
 			paruObject.setAttribute('emissive', '#f5f5f5')
 			paruObject.setAttribute('emissiveIntensity', '1')
-			if (isUserSmoker()){
-				paruObject.setAttribute('gltf-model', '#kotor-model')
-			} else {
-				paruObject.setAttribute('gltf-model', '#sehat-model')
+			if (objectLoaded){
+				if (isUserSmoker()){
+					paruObject.setAttribute('gltf-model', '#kotor-model')
+				} else {
+					paruObject.setAttribute('gltf-model', '#sehat-model')
+				}
 			}
 			this.el.appendChild(paruObject)
             
