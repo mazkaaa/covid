@@ -93,10 +93,11 @@ function isUserSmoker(){
 window.onload = () => {
 	Howler.autoUnlock = false
 	setExpire(alreadyChoose)
-	photoContainer = document.getElementById("photoModeContainer")
 	var scene = document.querySelector('a-scene')
-	scene.addEventListener('loaded', (e)=>{
+	scene.addEventListener('loaded', () =>{
 		document.title = titleTemp
+		photoContainer = document.getElementById("photoModeContainer")
+		photoContainer.style.display = "block"
 		if (!isContainExpiry(alreadyChoose)){
 			document.getElementById("illus-wrapper").innerHTML = ''
 			document.getElementById("instruction").innerHTML = "Scan sisi depan KTP kamu untuk memulai"
@@ -230,7 +231,7 @@ AFRAME.registerComponent('photo-mode', {
 		const closeButton = document.getElementById('closeButton')
   
 		// Container starts hidden so it isn't visible when the page is still loading
-		container.style.display = 'block'
+		//container.style.display = 'block'
   
 		closeButton.addEventListener('click', () => {
 			container.classList.remove('photo')
