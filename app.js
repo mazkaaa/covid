@@ -22,6 +22,9 @@ let illusTemp = '<div class="img-illus text-center mb-3">' +
 
 
 let photoContainer = null
+if (cameraLoaded){
+	photoContainer = document.getElementById("photoModeContainer")
+}
 
 
 function changeInstructionText(){
@@ -145,7 +148,7 @@ window.onload = () => {
 	var scene = document.querySelector('a-scene')
 	scene.addEventListener('loaded', (e)=>{
 		document.title = titleTemp
-		photoContainer = document.getElementById("photoModeContainer")
+		cameraLoaded = true
 		if (!isContainExpiry(alreadyChoose)){
 			document.getElementById("illus-wrapper").innerHTML = ''
 			document.getElementById("instruction").innerHTML = "Scan sisi depan KTP kamu untuk memulai"
