@@ -27,7 +27,8 @@ let assetsSelector = null
  * 
  * @param {number} type Type 0 for smoker, and type 1 for non smoker
  */
-function setAssetPreload(type){
+async function setAssetPreload(type){
+	await createAssetsElement()
 	switch (type) {
 	case 0:
 		assetsSelector.innerHTML = '<a-asset-item id="kotor-model" src="kotor2.glb" preload="true"></a-asset-item>'
@@ -37,6 +38,14 @@ function setAssetPreload(type){
 		assetsSelector.innerHTML = '<a-asset-item id="sehat-model" src="sehat2.glb" preload="true"></a-asset-item>'
 		break;
 	}
+}
+function createAssetsElement(){
+	return new Promise(resolve => {
+		assetsSelector = document.createElement("a-assets")
+		const sceneElement = document.querySelector("a-scene")
+		sceneElement.appendChild(assetsSelector)
+		resolve()
+	})
 }
 
 async function closeInstruction(){
@@ -115,7 +124,6 @@ window.onload = () => {
 	scene.addEventListener('loaded', () =>{
 		document.title = titleTemp
 		photoContainer = document.getElementById("photoModeContainer")
-		assetsSelector = document.querySelector("a-assets")
 		photoContainer.style.display = "block"
 		if (!isContainExpiry(alreadyChoose)){
 			document.getElementById("illus-wrapper").innerHTML = ''
