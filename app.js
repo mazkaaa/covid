@@ -102,37 +102,34 @@ window.onload = () => {
 			document.getElementById("illus-wrapper").innerHTML = ''
 			document.getElementById("instruction").innerHTML = "Scan sisi depan KTP kamu untuk memulai"
 			$(".scanIdText").addClass("open")
+		} else {
+			document.getElementById("illus-wrapper").innerHTML = illusTemp
+			document.getElementById("instruction").innerHTML = "Tempelkan KTP kamu di dada seperti ini, lalu scan menggunakan smartphone kamu"
+			openInstruction()
+			$(".scanIdText").addClass("open")
+			if (isUserSmoker()){
+				sound = new Howl({
+					src: ['audio-kotor.mp3'],
+					preload: true,
+					loop: true,
+					volume: 1,
+					onend: function () {
+						console.log('Audio finished');
+					}
+				})
+			} else {
+				sound = new Howl({
+					src: ['audio-sehat.mp3'],
+					preload: true,
+					loop: true,
+					volume: 1,
+					onend: function () {
+						console.log('Audio finished');
+					}
+				})
+			}
 		}
 	})
-
-
-	if (isContainExpiry(alreadyChoose)){
-		document.getElementById("illus-wrapper").innerHTML = illusTemp
-		document.getElementById("instruction").innerHTML = "Tempelkan KTP kamu di dada seperti ini, lalu scan menggunakan smartphone kamu"
-		openInstruction()
-		$(".scanIdText").addClass("open")
-		if (isUserSmoker()){
-			sound = new Howl({
-				src: ['audio-kotor.mp3'],
-				preload: true,
-				loop: true,
-				volume: 1,
-				onend: function () {
-					console.log('Audio finished');
-				}
-			})
-		} else {
-			sound = new Howl({
-				src: ['audio-sehat.mp3'],
-				preload: true,
-				loop: true,
-				volume: 1,
-				onend: function () {
-					console.log('Audio finished');
-				}
-			})
-		}
-	}
 }
 
 AFRAME.registerComponent('paruparu', {
