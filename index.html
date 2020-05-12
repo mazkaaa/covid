@@ -65,13 +65,13 @@
             photo-mode
             renderer="colorManagement: true; physicallyCorrectLights: true;"
             xrextras-generate-image-targets="primitive: paruparu-ktp">
-            <script>checkThePreload()</script>
 
         <a-camera
                 position="0 4 10"
                 raycaster="objects: .cantap"
                 cursor="fuse: false; rayOrigin: mouse;">
-        </a-camera>  
+        </a-camera>
+        <script>checkThePreload()</script>
     </a-scene>
         
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
