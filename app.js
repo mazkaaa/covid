@@ -21,7 +21,7 @@ let illusTemp = '<div class="img-illus text-center mb-3">' +
 				'</div>'
 
 
-const photoContainer = document.getElementById("photoModeContainer")
+let photoContainer = null
 
 
 function changeInstructionText(){
@@ -45,24 +45,37 @@ function runLoadingbar(){
 	}, 25000)
 }
 
-function closeInstruction(){
-	$(".scanIdText").removeClass("bgWhite")
-	$(".scanIdText").removeClass("open")
-	$("#instruction").addClass("text-white")
-	$("#powered").addClass("text-white")
-	$(".btn").removeClass("open")
-	$(".img-illus").removeClass("open")
+async function closeInstruction(){
+	await setCloseInstruction()
 	document.getElementById("illus-wrapper").innerHTML = ''
 	photoContainer.style.display = 'block'
 }
 
-function openInstruction(){
-	$("#instruction").removeClass("text-white")
-	$(".scanIdText").addClass("bgWhite")
-	$(".btn").addClass("open")
-	$(".img-illus").addClass("open")
-	$("#powered").removeClass("text-white")
+function setCloseInstruction(){
+	return new Promise(resolve => {
+		$(".scanIdText").removeClass("bgWhite")
+		$(".scanIdText").removeClass("open")
+		$("#instruction").addClass("text-white")
+		$("#powered").addClass("text-white")
+		$(".btn").removeClass("open")
+		$(".img-illus").removeClass("open")
+		resolve()
+	})
+}
+
+async function openInstruction(){
+	await setOpenInstruction()
 	photoContainer.style.display = 'none'
+}
+function setOpenInstruction(){
+	return new Promise(resolve => {
+		$("#instruction").removeClass("text-white")
+		$(".scanIdText").addClass("bgWhite")
+		$(".btn").addClass("open")
+		$(".img-illus").addClass("open")
+		$("#powered").removeClass("text-white")
+		resolve()
+	})
 }
 
 function setWithExpiry(key, value, ttl) {
@@ -132,6 +145,7 @@ window.onload = () => {
 	var scene = document.querySelector('a-scene')
 	scene.addEventListener('loaded', (e)=>{
 		document.title = titleTemp
+		photoContainer = document.getElementById("photoModeContainer")
 		if (!isContainExpiry(alreadyChoose)){
 			document.getElementById("illus-wrapper").innerHTML = ''
 			document.getElementById("instruction").innerHTML = "Scan sisi depan KTP kamu untuk memulai"
