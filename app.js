@@ -4,9 +4,6 @@ var smoker = "smoker"
 let founded = false;
 let played = false;
 
-let durationExpired = 60000
-
-let objectLoaded = false
 var sound
 
 var titleTemp
@@ -24,6 +21,14 @@ let photoContainer = null
 
 let assetsSelector = null
 
+if (isContainExpiry(alreadyChoose)){
+	if (isUserSmoker()){
+		setAssetPreload(0)
+	} else {
+		setAssetPreload(1)
+	}
+}
+
 /**
  * 
  * @param {number} type Type 0 for smoker, and type 1 for non smoker
@@ -32,14 +37,13 @@ async function setAssetPreload(type){
 	await createAssetsElement()
 	switch (type) {
 	case 0:
-		assetsSelector.innerHTML = '<a-asset-item id="kotor-model" src="kotor2.glb"></a-asset-item>'
+		assetsSelector.innerHTML = '<a-asset-item id="kotor-model" src="kotor2.glb" preload="true"></a-asset-item>'
 		break;
 	
 	case 1:
-		assetsSelector.innerHTML = '<a-asset-item id="sehat-model" src="sehat2.glb"></a-asset-item>'
+		assetsSelector.innerHTML = '<a-asset-item id="sehat-model" src="sehat2.glb" preload="true"></a-asset-item>'
 		break;
 	}
-	objectLoaded = true
 }
 function createAssetsElement(){
 	return new Promise(resolve => {
@@ -119,16 +123,22 @@ function isUserSmoker(){
 	return result
 }
 
+function checkPreload(){
+	return new Promise(resolve => {
+		if (isContainExpiry(alreadyChoose)){
+			if (isUserSmoker()){
+				setAssetPreload(0)
+			} else {
+				setAssetPreload(1)
+			}
+		}
+		resolve()
+	})
+}
+
 window.onload = () => {
 	Howler.autoUnlock = false
 	setExpire(alreadyChoose)
-	if (isContainExpiry(alreadyChoose)){
-		if (isUserSmoker()){
-			setAssetPreload(0)
-		} else {
-			setAssetPreload(1)
-		}
-	}
 	var scene = document.querySelector('a-scene')
 	scene.addEventListener('loaded', () =>{
 		document.title = titleTemp
@@ -189,12 +199,10 @@ AFRAME.registerComponent('paruparu', {
 			paruObject.setAttribute('position', '0 -1 0')
 			paruObject.setAttribute('emissive', '#f5f5f5')
 			paruObject.setAttribute('emissiveIntensity', '1')
-			if (objectLoaded){
-				if (isUserSmoker()){
-					paruObject.setAttribute('gltf-model', '#kotor-model')
-				} else {
-					paruObject.setAttribute('gltf-model', '#sehat-model')
-				}
+			if (isUserSmoker()){
+				paruObject.setAttribute('gltf-model', '#kotor-model')
+			} else {
+				paruObject.setAttribute('gltf-model', '#sehat-model')
 			}
 			this.el.appendChild(paruObject)
             
