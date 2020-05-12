@@ -21,6 +21,24 @@ let illusTemp = '<div class="img-illus text-center mb-3">' +
 
 let photoContainer = null
 
+let assetsSelector = null
+
+/**
+ * 
+ * @param {number} type Type 0 for smoker, and type 1 for non smoker
+ */
+function setAssetPreload(type){
+	switch (type) {
+	case 0:
+		assetsSelector.innerHTML = '<a-asset-item id="kotor-model" src="kotor2.glb" preload="true"></a-asset-item>'
+		break;
+	
+	case 1:
+		assetsSelector.innerHTML = '<a-asset-item id="sehat-model" src="sehat2.glb" preload="true"></a-asset-item>'
+		break;
+	}
+}
+
 async function closeInstruction(){
 	await setCloseInstruction()
 	document.getElementById("illus-wrapper").innerHTML = ''
@@ -97,6 +115,7 @@ window.onload = () => {
 	scene.addEventListener('loaded', () =>{
 		document.title = titleTemp
 		photoContainer = document.getElementById("photoModeContainer")
+		assetsSelector = document.querySelector("a-assets")
 		photoContainer.style.display = "block"
 		if (!isContainExpiry(alreadyChoose)){
 			document.getElementById("illus-wrapper").innerHTML = ''
@@ -117,6 +136,7 @@ window.onload = () => {
 						console.log('Audio finished');
 					}
 				})
+				setAssetPreload(0)
 			} else {
 				sound = new Howl({
 					src: ['audio-sehat.mp3'],
@@ -127,6 +147,7 @@ window.onload = () => {
 						console.log('Audio finished');
 					}
 				})
+				setAssetPreload(1)
 			}
 		}
 	})
