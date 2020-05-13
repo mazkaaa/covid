@@ -95,6 +95,12 @@ window.onload = () => {
 	setExpire(alreadyChoose)
 	var scene = document.querySelector('a-scene')
 	scene.addEventListener('loaded', () =>{
+		
+	})
+}
+
+AFRAME.registerComponent('uihandler', {
+	init: function(){
 		document.title = titleTemp
 		photoContainer = document.getElementById("photoModeContainer")
 		photoContainer.style.display = "block"
@@ -107,6 +113,13 @@ window.onload = () => {
 			document.getElementById("instruction").innerHTML = "Tempelkan KTP kamu di dada seperti ini, lalu scan menggunakan smartphone kamu"
 			openInstruction()
 			$(".scanIdText").addClass("open")
+		}
+	}
+})
+
+AFRAME.registerComponent('voiceover', {
+	init: function() {
+		if (isContainExpiry(alreadyChoose)){
 			if (isUserSmoker()){
 				sound = new Howl({
 					src: ['audio-kotor.mp3'],
@@ -129,8 +142,8 @@ window.onload = () => {
 				})
 			}
 		}
-	})
-}
+	}
+})
 
 AFRAME.registerComponent('paruparu', {
 	schema: {
