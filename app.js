@@ -160,14 +160,14 @@ AFRAME.registerComponent('paruparu', {
         
 
 		if (isContainExpiry(alreadyChoose)){
-			paruObject.setAttribute('scale', '8.5 8.5 8.5')
+			paruObject.setAttribute('scale', '8 8 8')
 			paruObject.setAttribute('position', '0 -1 0')
 			paruObject.setAttribute('emissive', '#f5f5f5')
 			paruObject.setAttribute('emissiveIntensity', '1')
 			if (isUserSmoker()){
-				paruObject.setAttribute('gltf-model', '#kotor-model')
+				paruObject.setAttribute('gltf-model', 'url(kotor2.glb)')
 			} else {
-				paruObject.setAttribute('gltf-model', '#sehat-model')
+				paruObject.setAttribute('gltf-model', 'url(sehat2.glb)')
 			}
 			this.el.appendChild(paruObject)
             
