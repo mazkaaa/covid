@@ -98,7 +98,6 @@ window.onload = () => {
 		
 	})
 }
-
 AFRAME.registerComponent('preloadobject', {
 	init: function(){
 		const assetEl = document.createElement("a-assets")
