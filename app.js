@@ -99,6 +99,21 @@ window.onload = () => {
 	})
 }
 
+AFRAME.registerComponent('preloadobject', {
+	init: function(){
+		const assetEl = document.createElement("a-assets")
+		const sceneEl = this.el
+		sceneEl.appendChild(assetEl)
+		if (isContainExpiry(alreadyChoose)){
+			if (isUserSmoker()){
+				assetEl.innerHTML = '<a-asset-item id="kotor-model" src="kotor2.glb"></a-asset-item>'
+			} else {
+				assetEl.innerHTML = '<a-asset-item id="sehat-model" src="sehat2.glb"></a-asset-item>'
+			}
+		}
+	}
+})
+
 AFRAME.registerComponent('uihandler', {
 	init: function(){
 		document.title = titleTemp
@@ -165,9 +180,9 @@ AFRAME.registerComponent('paruparu', {
 			paruObject.setAttribute('emissive', '#f5f5f5')
 			paruObject.setAttribute('emissiveIntensity', '1')
 			if (isUserSmoker()){
-				paruObject.setAttribute('gltf-model', 'url(kotor2.glb)')
+				paruObject.setAttribute('gltf-model', '#kotor-model')
 			} else {
-				paruObject.setAttribute('gltf-model', 'url(sehat2.glb)')
+				paruObject.setAttribute('gltf-model', '#sehat-model')
 			}
 			this.el.appendChild(paruObject)
             
