@@ -103,9 +103,9 @@ AFRAME.registerComponent('uitutor', {
 	init: function(){
 		const tutorContainer = document.getElementById("tutor")
 		const closeButton = document.getElementById("closetutor")
-		$(".tutor").addClass("open")
+		$(".tutorcss").addClass("open")
 		closeButton.addEventListener('click', () => {
-			$(".tutor").removeClass("open")
+			$(".tutorcss").removeClass("open")
 			tutorContainer.innerHTML = ''
 			$(".scanIdText").addClass("open")
 		})
