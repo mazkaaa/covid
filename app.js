@@ -98,6 +98,20 @@ window.onload = () => {
 		
 	})
 }
+
+AFRAME.registerComponent('uitutor', {
+	init: function(){
+		const tutorContainer = document.getElementById("tutor")
+		const closeButton = document.getElementById("closetutor")
+		$(".tutor").addClass("open")
+		closeButton.addEventListener('click', () => {
+			$(".tutor").removeClass("open")
+			tutorContainer.innerHTML = ''
+			$(".scanIdText").addClass("open")
+		})
+	}
+})
+
 AFRAME.registerComponent('preloadobject', {
 	init: function(){
 		const assetEl = document.createElement("a-assets")
@@ -109,24 +123,6 @@ AFRAME.registerComponent('preloadobject', {
 			} else {
 				assetEl.innerHTML = '<a-asset-item id="sehat-model" src="sehat2.glb"></a-asset-item>'
 			}
-		}
-	}
-})
-
-AFRAME.registerComponent('uihandler', {
-	init: function(){
-		document.title = titleTemp
-		photoContainer = document.getElementById("photoModeContainer")
-		photoContainer.style.display = "block"
-		if (!isContainExpiry(alreadyChoose)){
-			document.getElementById("illus-wrapper").innerHTML = ''
-			document.getElementById("instruction").innerHTML = "Scan sisi depan KTP kamu untuk memulai"
-			$(".scanIdText").addClass("open")
-		} else {
-			document.getElementById("illus-wrapper").innerHTML = illusTemp
-			document.getElementById("instruction").innerHTML = "Tempelkan KTP kamu di dada seperti ini, lalu scan menggunakan smartphone kamu"
-			openInstruction()
-			$(".scanIdText").addClass("open")
 		}
 	}
 })
@@ -225,7 +221,6 @@ AFRAME.registerComponent('paruparu', {
 			}
 
 			object3D.visible = false
-			document.getElementById("instruction").innerHTML = "Scan sisi depan KTP kamu untuk memulai"
 			$(".scanIdText").addClass("open")
 		}
 
