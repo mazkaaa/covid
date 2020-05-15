@@ -12,15 +12,6 @@
 	
 }
 
-.btn {
-	visibility: hidden;
-    opacity: 0;
-}
-.btn.open{
-	visibility: visible;
-    opacity: 1;
-}
-
 .option1{
 
 }
