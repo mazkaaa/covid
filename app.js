@@ -101,6 +101,7 @@ window.onload = () => {
 
 AFRAME.registerComponent('uitutor', {
 	init: function(){
+		const container = document.getElementById('photoModeContainer')
 		const tutorContainer = document.getElementById("tutor")
 		const closeButton = document.getElementById("closetutor")
 		$(".tutorcss").addClass("open")
@@ -108,6 +109,7 @@ AFRAME.registerComponent('uitutor', {
 			$(".tutorcss").removeClass("open")
 			tutorContainer.innerHTML = ''
 			$(".scanIdText").addClass("open")
+			container.style.display = "block"
 		})
 	}
 })
